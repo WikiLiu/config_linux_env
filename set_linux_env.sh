@@ -104,10 +104,15 @@ xdg-open "https://github.com/settings/keys"
 # Install neovim
 if [ $OS = 'ubuntu' ] || [ $OS = 'debian' ]; then
     sudo apt-get install neovim
+    sudo apt-get install software-properties-common
+    sudo apt-get install python-software-properties
+    sudo add-apt-repository ppa:neovim-ppa/stable
+    sudo apt-get update
+    sudo apt-get install neovim
 elif [ $OS = 'arch' ]; then
     sudo pacman -S neovim
 elif [ $OS = 'fedora' ]; then
-    sudo dnf install neovim
+    sudo dnf install -y neovim python3-neovim
 fi
 # Check if the directories exist and remove them before cloning
 if [ -d "~/.config/nvim" ]; then
