@@ -114,25 +114,14 @@ if [ -d "~/.config/nvim" ]; then
     rm -rf ~/.config/nvim
 fi
 
-if [ -d "~/.config/nvim/user_config" ]; then
-    rm -rf ~/.config/nvim/user_config
-fi
-# Clone astronvim from GitHub
-git clone https://github.com/astronvim/astronvim ~/.config/nvim
+# required
+mv ~/.config/nvim{,.bak}
 
-# Check if the astronvim configuration directory exists
-if [ ! -d "~/.config/nvim" ]; then
-    echo "astronvim configuration directory does not exist. Please clone astronvim first."
-    exit 1
-fi
-
-# Check if the user_config directory exists and remove it before cloning
-if [ -d "~/.config/nvim/user_config" ]; then
-    rm -rf ~/.config/nvim/user_config
-fi
-
-# Load user_config from wikiliu/user_config repo
-git clone https://github.com/WikiLiu/nvim_config.git ~/.config/nvim/lua/user
+# optional but recommended
+mv ~/.local/share/nvim{,.bak}
+mv ~/.local/state/nvim{,.bak}
+mv ~/.cache/nvim{,.bak}
+git clone https://github.com/WikiLiu/LazyVim_Config.git ~/.config/nvim
 
 # Install tmux
 if [ $OS = 'ubuntu' ] || [ $OS = 'debian' ]; then
